@@ -18,16 +18,27 @@ public final class MenuView extends FeedbackView {
 
     public void display(){
         System.out.println("Welcome!");
-        System.out.println("Please, input the path to a file.");
+        System.out.println("Please, select one option:");
+        System.out.println("1 - Select a file");
+        System.out.println("2 - Show file contents");
+        System.out.println("3 - Append contents to file");
+        System.out.println("4 - Count number of words (case insensitive) in file");
+        System.out.println("5 - Calculate number of letters in the text");
+        System.out.println("6 - Calculate word matches");
     }
 
     public HashMap<String, String> getInputs(){
         StringInput[] stringInputs = {
-                new StringInput("filePath",   "File path", TypeOfString.filePath),
+                new StringInput("menuOption",   "Option", TypeOfString.number),
         };
 
         processInputs(stringInputs);
 
+        int val = Integer.parseInt(inputs.get("menuOption"));
+        if (val < 1 || val > 6){
+            System.out.println("Option is not valid, please try again.");
+            getInputs();
+        };
         return inputs;
     }
 
