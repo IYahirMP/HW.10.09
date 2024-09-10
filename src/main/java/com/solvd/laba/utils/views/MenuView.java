@@ -25,6 +25,7 @@ public final class MenuView extends FeedbackView {
         System.out.println("4 - Count number of words (case insensitive) in file");
         System.out.println("5 - Calculate number of letters in the text");
         System.out.println("6 - Calculate word matches");
+        System.out.println("7 - Exit");
     }
 
     public HashMap<String, String> getInputs(){
@@ -35,7 +36,7 @@ public final class MenuView extends FeedbackView {
         processInputs(stringInputs);
 
         int val = Integer.parseInt(inputs.get("menuOption"));
-        if (val < 1 || val > 6){
+        if (val < 1 || val > 7){
             System.out.println("Option is not valid, please try again.");
             getInputs();
         };

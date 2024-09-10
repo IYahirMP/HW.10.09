@@ -30,6 +30,7 @@ public class MainController {
             case 4 -> countWordsInsensitive();
             case 5 -> calculateLetters();
             case 6 -> calculateMatches();
+            case 7 -> exit();
         }
 
         System.out.println("\n\n\n\n\n\n\n\n");
@@ -64,7 +65,8 @@ public class MainController {
             String data = FileUtils.readFileToString(file, "UTF-8");
             System.out.println(data);
         }catch(Exception e){
-            e.printStackTrace();
+            System.out.println("File contents could not be retrieved. Resetting...");
+            displayMenu();
         }
         System.out.println("-----------------------------------------------");
     }
@@ -80,7 +82,8 @@ public class MainController {
             ostream.write(content.getBytes());
             System.out.println("Contents have been written to the file.");
         }catch(Exception e){
-            e.printStackTrace();
+            System.out.println("File contents could not be written. Resetting...");
+            displayMenu();
         }
 
         System.out.println("---------------------------------------------------------------------------------");
@@ -96,13 +99,10 @@ public class MainController {
             String[] words = StringUtils.split(data);
             words = StringUtils.stripAll(words,",.;[]{}<>?/-_=+()*!@#$%^&*");
 
-            /*int i = 1;
-            for(String word : words){
-                System.out.println("Word no. " + i++ + ": " + word);
-            };*/
             System.out.println("The file " + file.getAbsolutePath() + " has " + words.length + " words");
         }catch(Exception e){
-            e.printStackTrace();
+            System.out.println("File contents could not be read. Resetting...");
+            displayMenu();
         }
 
         System.out.println("---------------------------------------------------------------------------------");
@@ -125,7 +125,8 @@ public class MainController {
             }
             System.out.println("The file " + file.getAbsolutePath() + " has " + count + " letters");
         }catch(Exception e){
-            e.printStackTrace();
+            System.out.println("File contents could not be read. Resetting...");
+            displayMenu();
         }
 
         System.out.println("---------------------------------------------------------------------------------");
@@ -143,9 +144,15 @@ public class MainController {
             int matches = StringUtils.countMatches(data, matchWord);
             System.out.println("The file " + file.getAbsolutePath() + " has " + matches + " matches for word " + matchWord);
         }catch(Exception e){
-            e.printStackTrace();
+            System.out.println("File contents could not be read. Resetting...");
+            displayMenu();
         }
 
         System.out.println("---------------------------------------------------------------------------------");
+    }
+
+    public void exit(){
+        System.out.println("Shutting off the program...");
+        System.exit(0);
     }
 }
